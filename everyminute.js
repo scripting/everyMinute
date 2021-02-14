@@ -22,6 +22,7 @@ function runEveryMinute (callback) { //run callback at the top of each minute, w
 		}
 	setInterval (everySecond, 1000);
 	}
-runEveryMinute (function () {
+
+runEveryMinute (function () { //test code
 	console.log ("\n" + myProductName + ": " + new Date ().toLocaleTimeString () + ", v" + myVersion);
 	});
