@@ -1,0 +1,7 @@
+{
+	"name": "testeveryminute",
+	"version": "0.4.0",
+	"main": "everyminute.js",
+	"dependencies" : {
+		}
+	}
