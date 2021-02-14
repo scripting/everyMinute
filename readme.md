@@ -1,18 +1,14 @@
 # runEveryMinute
 
-A reusable routine that runs a routine at the top of a minute with no drift. 
+Runs a JavaScript callback with setInterval, at the top of every minute, with no drift. 
 
-### A well-known JavaScript problem, solved
+### No drift scheduling in JS
 
-The goal is to reduce drift in my everyMinute functions. This is how I do it. 
+A well-known JavaScript <a href="https://www.google.com/search?q=javascript+drift+setinterval">problem</a>, solved.
 
-Every second we check if it's time for us to run the everyMinute script, if so we do. 
+Some functions in servers and browser software need to run periodiically, say once a minute. If you code it in a straightforward way you get drift. The scheduling in JS is imperfect, and always errs on the side of running the code later than you requested, so after a few days it's running at 3 seconds into the minute, then 22 seconds, and so on. It becomes kind of a random number. I prefer everyMinute code to run at the top of the minute, always. And that's what this function does. 
 
-It still isn't accurate, but it does eliminate drift. 
+It's simple, even brute force. It wakes up every second and sees if it's the top of the minute. If so it runs the callback. It has a backup plan, if it's been more than a minute since you ran the callback, it runs it now, and starts again at minute 0.
 
-It always is within a second or at most two from the top of the minute, and then it gets back on track with the next call. 
-
-Drift is gone. Accuracy is still mediocre. 
-
-My brute force method worked, and it's actually quite elegant. I'm going to install it in daveutils, so it'll be available to all my apps. There already is a routine there called runEveryMinute, and this will just replace it. 
+I tried more mathematical solutions, but they didn't work as well as this method. :-)
 
